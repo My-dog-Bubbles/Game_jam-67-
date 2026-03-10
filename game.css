@@ -1,0 +1,45 @@
+/* Remove default spacing */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 70% top area */
+#battle-area {
+    flex: 7;
+    background-color: #1e1e2f;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* 30% bottom area */
+#shop-area {
+    flex: 3;
+    background-color: #2f2f3f;
+    color: white;
+    padding: 10px;
+}
+
+/* Weapons layout */
+#weapons-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.weapon-card {
+    background: #444;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 80px;
+}
+
+#character, #enemy {
+    font-size: 60px;
+    margin: 20px;
+}

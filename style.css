@@ -1,0 +1,38 @@
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:linear-gradient(135deg,#141e30,#243b55);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+}
+
+.start-screen{
+text-align:center;
+}
+
+.game-title{
+font-size:64px;
+margin-bottom:50px;
+letter-spacing:4px;
+}
+
+.menu button{
+display:block;
+margin:15px auto;
+padding:15px 40px;
+font-size:20px;
+border:none;
+border-radius:8px;
+background:#00c3ff;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+.menu button:hover{
+background:#0099cc;
+transform:scale(1.1);
+}
