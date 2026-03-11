@@ -10,9 +10,27 @@
 
 <div id="battle-area">
     <h1>Battle Arena</h1>
-    <div id="character">🦸</div>
-    <div id="enemy">👾</div>
-    <p>Click to attack!</p>
+    <h2 id="round">Round: 1 / 5</h2>
+    <div id="fighters">
+
+    <div id="character" class="fighter">
+        <div class="health-bar">
+            <div id="player-health-bar" class="health-fill"></div>
+        </div>
+        <img src="photos/mainCharacter/mainCharacter.png" alt="mainCharacter">
+        <div class="damage" id="player-damage"></div>
+    </div>
+
+    <div id="enemy" class="fighter">
+        <div class="health-bar">
+            <div id="enemy-health-bar" class="health-fill"></div>
+        </div>
+        <img src="photos/Enemies/67.png" alt="enemy">
+        <div class="damage" id="enemy-damage"></div>
+    </div>
+
+    </div>
+    <p id="message"></p>Click to attack!</p>
 </div>
 
 <div id="shop-area">
@@ -48,6 +66,6 @@
         </div>
     </div>
 </div>
-
+<script src="script.js"></script>
 </body>
 </html>

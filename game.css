@@ -13,6 +13,91 @@ body {
     color: white;
     text-align: center;
     padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#character, #enemy {
+    position: relative;
+    text-align: center;
+}
+#character img, #enemy img {
+    width: 150px;
+}
+
+#fighters {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 40px;
+}
+
+.fighter {
+    position: relative;
+    text-align: center;
+}
+
+/* HEALTH BAR */
+
+.health-bar {
+    width: 150px;
+    height: 15px;
+    background: #444;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.health-fill {
+    height: 100%;
+    width: 100%;
+    background: limegreen;
+    transition: width 0.4s ease;
+}
+
+/* DAMAGE NUMBERS */
+
+.damage {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: red;
+    font-size: 24px;
+    font-weight: bold;
+    opacity: 0;
+}
+
+/* Floating animation */
+
+@keyframes floatDamage {
+    0% {
+        transform: translate(-50%,0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%,-40px);
+        opacity: 0;
+    }
+}
+
+.show-damage {
+    animation: floatDamage 1s ease;
+}
+
+/* HIT SHAKE */
+
+@keyframes hitShake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.hit {
+    animation: hitShake 0.3s;
 }
 
 /* 30% bottom area */
@@ -37,9 +122,4 @@ body {
     border-radius: 8px;
     text-align: center;
     min-width: 80px;
-}
-
-#character, #enemy {
-    font-size: 60px;
-    margin: 20px;
 }
