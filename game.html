@@ -7,32 +7,47 @@
 </head>
 
 <body>
-
 <div id="battle-area">
     <h1>Battle Arena</h1>
     <h2 id="round">Round: 1 / 5</h2>
+
     <div id="fighters">
-
-    <div id="character" class="fighter">
-        <div class="health-bar">
-            <div id="player-health-bar" class="health-fill"></div>
+        <div id="character" class="fighter">
+            <div class="health-bar">
+                <div id="player-health-bar" class="health-fill"></div>
+            </div>
+            <img src="photos/mainCharacter/mainCharacter.png" alt="mainCharacter">
+            <div class="damage" id="player-damage"></div>
         </div>
-        <img src="photos/mainCharacter/mainCharacter.png" alt="mainCharacter">
-        <div class="damage" id="player-damage"></div>
-    </div>
 
-    <div id="enemy" class="fighter">
-        <div class="health-bar">
-            <div id="enemy-health-bar" class="health-fill"></div>
+        <div id="enemy" class="fighter">
+            <div class="health-bar">
+                <div id="enemy-health-bar" class="health-fill"></div>
+            </div>
+            <img id="enemy-img" src="photos/Enemies/67.png" alt="enemy">
+            <div class="damage" id="enemy-damage"></div>
         </div>
-        <img src="photos/Enemies/67.png" alt="enemy">
-        <div class="damage" id="enemy-damage"></div>
     </div>
 
-    </div>
-    <p id="message"></p>Click to attack!</p>
+    <p id="current-fighter">Current Fighter: Player</p>
+    <p id="message">Press 'P' to start the game!</p>
+    <p id="coins">Coins: 0</p>
 </div>
 
+<!-- Pause Menu -->
+<div id="pause-menu" class="hidden">
+    <h2>⏸️ Game Paused</h2>
+    <p id="pause-coins">Coins: 0</p>
+    <div id="song-options">
+        <h3>Song Options</h3>
+        <button onclick="changeSong('song1')">Song 1</button>
+        <button onclick="changeSong('song2')">Song 2</button>
+        <button onclick="changeSong('song3')">Song 3</button>
+    </div>
+    <p>Press 'P' to resume</p>
+</div>
+
+<!-- Weapons Shop -->
 <div id="shop-area">
     <h2>⚔️ Weapon Shop</h2>
     <div id="weapons-container">
@@ -49,7 +64,7 @@
             <div class="weapon-cost">💰 17</div>
         </div>
         <div class="weapon-card">
-            <div class="weapon-name">Type 67 recoilless riffle</div>
+            <div class="weapon-name">Type 67 recoilless rifle</div>
             <div class="weapon-cost">💰 17</div>
         </div>
         <div class="weapon-card">
@@ -57,15 +72,12 @@
             <div class="weapon-cost">💰 16</div>
         </div>
         <div class="weapon-card">
-            <div class="weapon-name">Type 67 recoilless riffle</div>
-            <div class="weapon-cost">💰 17</div>
-        </div>
-        <div class="weapon-card">
             <div class="weapon-name">M67 flame tank</div>
             <div class="weapon-cost">💰 60</div>
         </div>
     </div>
 </div>
-<script src="script.js"></script>
+
+<script src="script.js" defer></script>
 </body>
 </html>
