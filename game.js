@@ -1,197 +1,320 @@
-// =======================
-// GAME STATE
-// =======================
-let round = 1;
-const maxRounds = 5;
-let playerHealth = 100;
-let enemyHealth = 100;
-let playerAttack = 10;
-let enemyAttack = 19;
-let coins = 0;
+/* =========================
+   GAME STATE
+========================= */
+
+let round = 1
+let maxRounds = 5
+
+let playerHealth = 100
+let enemyHealth = 100
+
+let playerAttack = 10
+let enemyAttack = 19
+let bonusApplied = false;
+
+let coins = 0
+let coinInterval
+let fightInterval
+let paused = false
+/* =========================
+   ENEMY DATA
+========================= */
 
 const enemyImages = [
-    "photos/Enemies/67.png",
-    "photos/Enemies/ballarina_capochina.png",
-    "photos/Enemies/tung_tung_sahur.png",
-    "photos/Enemies/67.png",
-    "photos/Enemies/ballarina_capochina.png"
-];
+"photos/Enemies/67.png",
+"photos/Enemies/ballarina_capochina.png",
+"photos/Enemies/tung_tung_sahur.png",
+"photos/Enemies/67.png",
+"photos/Enemies/ballarina_capochina.png"
+]
 
-let fightInterval;
 
-// =======================
-// DOM ELEMENTS
-// =======================
-const playerBar = document.getElementById("player-health-bar");
-const enemyBar = document.getElementById("enemy-health-bar");
-const playerDamageText = document.getElementById("player-damage");
-const enemyDamageText = document.getElementById("enemy-damage");
-const player = document.getElementById("character");
-const enemy = document.getElementById("enemy");
-const enemyImg = document.getElementById("enemy-img");
-const roundText = document.getElementById("round");
-const message = document.getElementById("message");
-const coinsText = document.getElementById("coins");
-const currentFighterText = document.getElementById("current-fighter");
+/* =========================
+   DOM ELEMENTS
+========================= */
 
-// Pause menu
-let isPaused = false;
-const pauseMenu = document.getElementById("pause-menu");
-const pauseCoins = document.getElementById("pause-coins");
+const playerBar = document.getElementById("player-health-bar")
+const enemyBar = document.getElementById("enemy-health-bar")
 
-// =======================
-// INITIAL SETUP
-// =======================
-document.addEventListener("DOMContentLoaded", () => {
-    
-    setInterval(() => {
-        coins++;
-        coinsText.textContent = `Coins: ${coins}`;
-        pauseCoins.textContent = `Coins: ${coins}`; // update pause menu too
-    }, 1000);
+const player = document.getElementById("character")
+const enemy = document.getElementById("enemy")
 
-    // Start auto-fight
-    startAutoFight();
+const enemyImg = document.getElementById("enemy-img")
 
-    // Show pause menu initially
-    isPaused = true;
-    pauseMenu.classList.remove("hidden");
-    message.textContent = "Game Paused. Press 'P' to start!";
+const message = document.getElementById("message")
+const coinsText = document.getElementById("coins")
 
-    // Update round and health UI
-    roundText.textContent = `Round: ${round} / ${maxRounds}`;
-    updateHealthBars();
+const playerDamageText = document.getElementById("player-damage")
+const enemyDamageText = document.getElementById("enemy-damage")
 
-    // Pause key listener
-    document.addEventListener("keydown", (e) => {
-        if (e.key.toLowerCase() === "p") togglePause();
-    });
-});
+const fighterText = document.getElementById("current-fighter")
 
-// =======================
-// AUTO-FIGHT
-// =======================
-function startAutoFight() {
+const pauseMenu = document.getElementById("pause-menu")
+const pauseCoins = document.getElementById("pause-coins")
+
+
+/* =========================
+   COIN SYSTEM
+========================= */
+
+function startCoins() {
+    coinInterval = setInterval(() => {
+        coins++
+        coinsText.textContent = "Coins: " + coins
+    }, 1000)
+}
+
+// Start immediately when the game starts
+startCoins();
+
+function stopCoins() {
+    clearInterval(coinInterval)
+}
+
+/* =========================
+   START AUTO FIGHT
+========================= */
+
+startFight()
+
+function startFight() {
+
     fightInterval = setInterval(() => {
+
+        attack()
+
+    }, 1000)
+
+}
+
+
+/* =========================
+   ATTACK SYSTEM
+========================= */
+
+function attack() {
+
+    fighterText.textContent = "Current Fighter: Player"
+
+    player.classList.add("attack")
+
+    let playerDamage = Math.floor(Math.random() * playerAttack) + 5
+    enemyHealth -= playerDamage
+
+    showDamage(enemyDamageText, playerDamage)
+    enemy.classList.add("hit", "bounce")
+
+    updateBars();
+    checkHealthBonus();
+
+    setTimeout(() => {
+
+        fighterText.textContent = "Current Fighter: Enemy"
+
+        let enemyDamage = Math.floor(Math.random() * enemyAttack) + 5
+        playerHealth -= enemyDamage
+
+        showDamage(playerDamageText, enemyDamage)
+
+        player.classList.add("hit", "bounce")
+
+        updateBars()
+
+        checkRound()
+
+    }, 500)
+
+}
+
+
+/* =========================
+   HEALTH BAR SYSTEM
+========================= */
+
+function updateBars() {
+
+    playerBar.style.width = playerHealth + "%"
+    enemyBar.style.width = enemyHealth + "%"
+
+    updateColor(playerBar, playerHealth)
+    updateColor(enemyBar, enemyHealth)
+
+}
+
+function checkHealthBonus() {
+    if (!bonusApplied && playerHealth === 67) {
+        playerAttack *= 2; // double attack
+        bonusApplied = true;
+        message.textContent = "Health at 67! Attack doubled!";
+    }
+}
+
+function updateColor(bar, health) {
+
+    if (health > 60) {
+        bar.style.background = "limegreen"
+    }
+    else if (health > 30) {
+        bar.style.background = "yellow"
+    }
+    else {
+        bar.style.background = "red"
+    }
+
+}
+
+
+/* =========================
+   FLOATING DAMAGE TEXT
+========================= */
+
+function showDamage(element, damage) {
+
+    element.textContent = "-" + damage
+
+    element.classList.remove("show-damage")
+
+    void element.offsetWidth
+
+    element.classList.add("show-damage")
+
+}
+
+
+/* =========================
+   ROUND SYSTEM
+========================= */
+
+function checkRound() {
+    if (enemyHealth <= 0) {
+        // Random coin drop
+        let droppedCoins = Math.random() < 0.5 ? 16 : 17;
+        coins += droppedCoins;
+        coinsText.textContent = "Coins: " + coins;
+
+        // Show floating coin drop above enemy
+        const coinDrop = document.getElementById("coin-drop");
+        coinDrop.textContent = `+${droppedCoins} 💰`;
+        coinDrop.classList.remove("show-damage");
+        void coinDrop.offsetWidth; // restart animation
+        coinDrop.classList.add("show-damage");
+
+        // Optional: also update message area
+        message.textContent = `Enemy defeated! You gained ${droppedCoins} coins!`;
+
+        // Reset enemy for next round
+        round++
+
+        if (round > maxRounds) {
+
+            clearInterval(fightInterval)
+            message.textContent = "Game Finished"
+            return
+        }
+
+        playerHealth = 100
+        enemyHealth = 100
+
+        enemyImg.src = enemyImages[round - 1]
+
+        enemyAttack += Math.random() < .5 ? 6 : 7
+    }
+
+    // Player death
+    else if (playerHealth <= 0) {
+        round++;
         if (round > maxRounds) {
             clearInterval(fightInterval);
-            message.textContent = "Game Finished!";
+            message.textContent = "Game Finished";
             return;
         }
-        attackEnemy();
-    }, 1000);
-}
+        playerHealth = 100;
+        enemyHealth = 100;
 
-// =======================
-// ATTACK FUNCTION
-// =======================
-function attackEnemy() {
-    if (playerHealth <= 0 || enemyHealth <= 0) return;
-
-    // Player attack
-    currentFighterText.textContent = "Current Fighter: Player";
-    player.classList.add("attack", "bounce", "hit");
-    enemy.classList.remove("hit");
-
-    const playerDamage = Math.floor(Math.random() * 20) + 5;
-    const enemyDamage = Math.floor(Math.random() * 15) + 5;
-
-    enemyHealth -= playerDamage;
-    if (enemyHealth < 0) enemyHealth = 0;
-
-    updateHealthBars();
-    showDamage(enemyDamageText, playerDamage);
-
-    setTimeout(() => { player.classList.remove("attack", "bounce"); }, 500);
-
-    // Enemy attack
-    setTimeout(() => {
-        currentFighterText.textContent = "Current Fighter: Enemy";
-        enemy.classList.add("attack", "bounce", "hit");
-        player.classList.remove("hit");
-
-        playerHealth -= enemyDamage;
-        if (playerHealth < 0) playerHealth = 0;
-
-        updateHealthBars();
-        showDamage(playerDamageText, enemyDamage);
-
-        setTimeout(() => { enemy.classList.remove("attack", "bounce", "hit"); }, 500);
-
-        checkRound();
-    }, 500);
-}
-
-// =======================
-// UPDATE HEALTH
-// =======================
-function updateHealthBars() {
-    playerBar.style.width = playerHealth + "%";
-    enemyBar.style.width = enemyHealth + "%";
-}
-
-// =======================
-// DAMAGE NUMBERS
-// =======================
-function showDamage(element, damage) {
-    element.textContent = "-" + damage;
-    element.classList.remove("show-damage");
-    void element.offsetWidth;
-    element.classList.add("show-damage");
-}
-
-// =======================
-// ROUND CHECK
-// =======================
-function checkRound() {
-    if (enemyHealth <= 0) nextRound();
-    else if (playerHealth <= 0) nextRound();
-}
-
-// =======================
-// NEXT ROUND
-// =======================
-function nextRound() {
-    round++;
-    if (round > maxRounds) {
-        message.textContent = "Game Finished!";
-        clearInterval(fightInterval);
-        return;
+        // Swap enemy image
+        enemyImg.src = enemyImages[round - 1];
+        enemyAttack += Math.random() < 0.5 ? 6 : 7;
     }
 
-    playerHealth = 100;
-    enemyHealth = 100;
-    updateHealthBars();
-    roundText.textContent = `Round: ${round} / ${maxRounds}`;
-    message.textContent = "New Round!";
-
-    enemyImg.src = enemyImages[round - 1];
-
-    const increase = Math.random() < 0.5 ? 6 : 7;
-    enemyAttack += increase;
 }
 
-// =======================
-// PAUSE MENU
-// =======================
+
+/* =========================
+   PAUSE SYSTEM
+========================= */
+
+document.addEventListener("keydown", e => {
+
+    if (e.key === "p") {
+        togglePause()
+    }
+
+})
+
 function togglePause() {
-    isPaused = !isPaused;
+    paused = !paused;
 
-    if (isPaused) {
-        pauseMenu.classList.remove("hidden");
-        pauseCoins.textContent = `Coins: ${coins}`;
-        clearInterval(fightInterval);
-        message.textContent = "Game Paused";
-    } else {
-        pauseMenu.classList.add("hidden");
-        message.textContent = "Game Resumed!";
-        startAutoFight(); // begin auto-fight only when unpaused
+    const statsDiv = document.getElementById("pause-stats");
+
+    if (paused) {
+        pauseMenu.classList.remove("hidden")
+        clearInterval(fightInterval)
+        stopCoins(); // stop coin gain
+
+        // Show player stats
+        statsDiv.innerHTML = `
+            <p>Round: ${round} / ${maxRounds}</p>
+            <p>Health: ${playerHealth} / 100</p>
+            <p>Attack: ${playerAttack}</p>
+            <p>Coins: ${coins}</p>
+        `;
     }
+    else {
+
+        pauseMenu.classList.add("hidden")
+        startFight()
+        startCoins(); // resume coin gain
+
+    }
+
 }
 
-// =======================
-// SONG OPTIONS
-// =======================
+
+/* =========================
+   WEAPON SHOP
+========================= */
+
+document.querySelectorAll(".weapon-card").forEach(card => {
+
+    card.onclick = () => {
+
+        let cost = parseInt(card.dataset.cost)
+        let power = parseInt(card.dataset.attack)
+
+        if (coins >= cost) {
+            coins -= cost
+            playerAttack += power
+
+            coinsText.textContent = "Coins: " + coins
+
+            card.style.background = "#2ecc71"
+            card.style.pointerEvents = "none"
+
+            message.textContent = "Attack increased!" + " (+" + power + ")"
+        }
+        else {
+
+            message.textContent = "Not enough coins!"
+        }
+    }
+})
+
+/* =========================
+   MUSIC SYSTEM
+========================= */
+
 function changeSong(song) {
-    alert(`Song changed to: ${song}`);
+
+    alert("Song changed to " + song)
+
 }

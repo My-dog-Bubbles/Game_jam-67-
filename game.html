@@ -9,7 +9,7 @@
 <body>
 <div id="battle-area">
     <h1>Battle Arena</h1>
-    <h2 id="round">Round: 1 / 5</h2>
+    <div id="coin-drop" class="damage"></div>
 
     <div id="fighters">
         <div id="character" class="fighter">
@@ -36,8 +36,10 @@
 
 <!-- Pause Menu -->
 <div id="pause-menu" class="hidden">
-    <h2>⏸️ Game Paused</h2>
-    <p id="pause-coins">Coins: 0</p>
+    <h2>⏸ Game Paused</h2>
+    <div id="pause-stats">
+      <!-- Stats will be filled by JS -->
+    </div>
     <div id="song-options">
         <h3>Song Options</h3>
         <button onclick="changeSong('song1')">Song 1</button>
@@ -51,33 +53,33 @@
 <div id="shop-area">
     <h2>⚔️ Weapon Shop</h2>
     <div id="weapons-container">
-        <div class="weapon-card">
+        <div class="weapon-card" data-cost="16" data-attack="12">
             <div class="weapon-name">M67 grenade</div>
             <div class="weapon-cost">💰 16</div>
         </div>
-        <div class="weapon-card">
+        <div class="weapon-card" data-cost="17" data-attack="14">
             <div class="weapon-name">Winchester Model 67</div>
             <div class="weapon-cost">💰 17</div>
         </div>
-        <div class="weapon-card">
+        <div class="weapon-card" data-cost="17" data-attack="14">
             <div class="weapon-name">Norinco type 67 machine gun</div>
             <div class="weapon-cost">💰 17</div>
         </div>
-        <div class="weapon-card">
+        <div class="weapon-card" data-cost="17" data-attack="14">
             <div class="weapon-name">Type 67 recoilless rifle</div>
             <div class="weapon-cost">💰 17</div>
         </div>
-        <div class="weapon-card">
+        <div class="weapon-card" data-cost="16" data-attack="12">
             <div class="weapon-name">HK 67</div>
             <div class="weapon-cost">💰 16</div>
         </div>
-        <div class="weapon-card">
+        <div class="weapon-card" data-cost="60" data-attack="76">
             <div class="weapon-name">M67 flame tank</div>
-            <div class="weapon-cost">💰 60</div>
+            <div class="weapon-cost">💰 67</div>
         </div>
     </div>
 </div>
 
-<script src="script.js" defer></script>
+<script src="game.js" defer></script>
 </body>
 </html>
