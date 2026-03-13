@@ -275,13 +275,6 @@ document.querySelectorAll(".weapon-card").forEach(card=>{
 })
 
 /* =========================
-   MUSIC SYSTEM
-========================= */
-function changeSong(song) {
-    alert("Song changed to " + song)
-}
-
-/* =========================
    END SCREEN
 ========================= */
 tryAgainBtn.addEventListener("click", ()=>{
