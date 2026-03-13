@@ -1,35 +1,113 @@
-# Game_jam-67-
+# Meme Egg - Battle Game
 
-## Ideas:
-- 67 easter eggs
-- Fight the memes
-- Genre: battle
+## How to Play
 
-- you go on different trials fighting different bosses. It will pull from old and new games. at the end you will fight toontoontoon sahor. At the start you are given coins to upgrade you levels
-  
-67 refrances (total refrances: 18):
-  - if you name yourself 67 you get a special weapon
-  - if you name yourself ^& then you get a sheild worth half of your health
-  - If your name starts with a "C" (ASCII: 67)
-  - toontoontoon sahor has 6 arms on one side and 7 on the other.
-  - When health is at 67 users attack doubles
-  - If you play song 6 you are unable to take damage for 7 seconds (cool down for 67 seconds)
-  - If you play song 7 you are unable to take damage for 6 seconds (cool down for 67 seconds) ** might remove**
-  - There is an sub boss at level 6 and a main boss at level 7
-  - The sixth person on the leader board name tag is violet
-  - The seventh person on the leader board name tag is indego ** might remove**
-  - Easy has 6 bosses and 7 levels
-  - Hard has 7 bosses and 6 levels ** might remove**
-  - You are given 67 coins at the start
-  - If you choose easy your start levels will be 7
-  - If you choose hard your start levels will be 6 ** might remove**
-  - The sub boss drops 70 coins 
-  - the main boss drops 60 coins ** might remove**
-  - each enemy drop 16 or 17 coins
-  - There is a special weapon that cost 67 dollars
-  - one of the songs is 67 on the beat maker
-  - on of the enemies are an images of 67
-  - if you have not taken any damage you are taken to level 67 where you your 
+### Getting Started
+1. **Enter your name** on the start menu (up to 10 characters)
+2. **Click "Start Game"** to begin the battle
+3. **Fight enemies** in automatic combat rounds
+4. **Earn coins** to purchase upgrades from the weapon shop
+5. **Survive as many rounds** as possible!
 
-  - 
-  - There are 67 game references
+### Combat System
+- **Player attacks** immediately (6-7 damage)
+- **Enemy attacks** after 3 seconds (16-17 damage initially)
+- **3-second gap** between attack cycles
+- **Health bars** show remaining HP
+- **Damage numbers** float up when hits land
+
+### Progression
+- **Each round**: Enemy attack increases by 6-7, player attack increases by 1.5
+- **Coin rate**: Increases by +1 per round
+- **Defeated enemies**: Drop 16-17 coins
+- **Health reset**: Both fighters return to 100 HP each round
+
+### Weapon Shop
+- **Attack upgrades**: Increase damage permanently
+- **Coin rate upgrade**: +5 coins per second (costs 267 coins)
+- **Multiple purchases**: Buy items multiple times
+- **Items disable** after purchase (green background)
+
+### Controls
+- **'P' key**: Pause/unpause game
+- **Mouse clicks**: Purchase weapons from shop
+
+## Game Features
+
+### Special Name Bonuses
+- **"67"**: +67 attack power, red glow effect
+- **"^&"**: Shield worth 50% of max health
+- **Names starting with "C"**: 1.5x coin rate multiplier
+
+### Health Bonus
+- **At exactly 67 HP**: Attack power doubles (once per round)
+
+### Coin System
+- **Starting coins**: 66
+- **Base rate**: 1 coin/second
+- **Round progression**: +1 coin/second each round
+- **"C" name bonus**: 1.5x multiplier on base rate
+
+## 67 References & Easter Eggs
+
+### Name-Based (3 references)
+- **Name "67"**: Grants +67 attack weapon
+- **Name "^&"**: Provides half-health shield  
+- **Names starting with "C"**: ASCII 67 = 'C', gives 1.5x coins
+
+### Combat & Stats (4 references)
+- **Health at 67**: Attack power doubles
+- **Enemy drops**: 16 or 17 coins
+- **Starting coins**: 66 (close to 67)
+- **Enemy attack**: Starts at 16-17 damage
+
+### Weapon Shop (3 references)
+- **M67 grenade**: 16 coins, +12 attack
+- **Winchester Model 67**: 17 coins, +14 attack
+- **Coin rate upgrade**: 267 coins, +5/sec
+
+### Visual & Audio (2 references)
+- **Enemy images**: Some enemies show "67"
+- **Song system**: One song has 67 BPM
+
+### Round Progression (1 reference)
+- **Round counter**: Tracks completed battles
+
+### Total References: 13+ hidden references throughout the game!
+
+## Strategy Tips
+
+### Early Game
+- **Save coins** for coin rate upgrade (267 coins)
+- **Watch health** for 67 HP bonus opportunity
+- **Use name bonuses** for easier start
+
+### Mid Game  
+- **Prioritize coin rate** over small attack upgrades
+- **Multiple weapon purchases** stack attack bonuses
+- **Shield bonus** helps survive high-damage rounds
+
+### Late Game
+- **High attack values** make rounds easier
+- **Coin income** becomes substantial with upgrades
+- **Survival** depends on balancing offense and timing
+
+## Technical Notes
+
+### Game Balance
+- **Difficulty scaling**: Progressive each round
+- **Economy**: Coins vs power tradeoffs
+- **Risk/Reward**: Health bonus timing
+- **Name bonuses**: Provide varied playstyles
+
+### Known Features
+- **Pause system**: Full game state preservation
+- **Responsive design**: Adapts to different screens
+- **Auto-combat**: Consistent timing and damage
+- **Visual feedback**: Damage numbers, health bars, animations
+
+---
+
+**Version**: Game Jam 67 Entry
+**Genre**: Battle/Incremental
+**Theme**: 67 references throughout
