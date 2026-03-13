@@ -1,6 +1,6 @@
 # Meme Egg - Battle Game
 
-## How to Play
+## How to Play -> [link to play](https://my-dog-bubbles.github.io/Game_jam-67-/)
 
 ### Getting Started
 1. **Enter your name** on the start menu (up to 10 characters)
@@ -35,8 +35,6 @@
 ## Game Features
 
 ### Special hidden Bonuses
-- Use **67** to find special play time bonuses
+- Use **67** to find special hidden play time bonuses
 
-**Version**: Game Jam 67 Entry
-**Genre**: Battle/Incremental
-**Theme**: 67 references throughout
+**Ai Used**: Chatgpt and Windsurf
