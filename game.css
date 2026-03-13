@@ -1,4 +1,3 @@
-/* General styling */
 body {
     margin: 0;
     height: 100vh;
@@ -14,9 +13,12 @@ body {
     flex: 7;
     text-align: center;
     padding: 20px;
+    background-image: url('photos/Backgrounds/clear_sky_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-/* Fighters Layout */
 #fighters {
     display: flex;
     justify-content: space-between;
@@ -120,7 +122,8 @@ body {
     font-size: 22px; 
     font-weight: bold; 
     color: yellow; 
-    margin-top: 10px; }
+    margin-top: 10px; 
+}
 
 /* Shop layout */
 #shop-area {
@@ -151,4 +154,37 @@ body {
 .weapon-card:hover {
     transform: scale(1.05);
     background: #555;
+}
+
+/* End Screen */
+#end-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 30, 47, 0.95);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    z-index: 1000;
+}
+#end-screen.hidden { display: none; }
+
+#end-screen button {
+    margin-top: 20px;
+    padding: 15px 40px;
+    font-size: 24px;
+    background: #00c3ff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+}
+
+#end-screen button:hover {
+    background: #0099cc;
 }

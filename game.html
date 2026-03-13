@@ -2,84 +2,101 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Game</title>
+<title>Battle Game</title>
 <link rel="stylesheet" href="game.css">
 </head>
 
 <body>
-<div id="battle-area">
-    <h1>Battle Arena</h1>
-    <div id="coin-drop" class="damage"></div>
+    <div id="battle-area">
+        <h1>Battle Arena</h1>
+        <div id="coin-drop" class="damage"></div>
 
-    <div id="fighters">
-        <div id="character" class="fighter">
-            <div class="health-bar">
-                <div id="player-health-bar" class="health-fill"></div>
+        <div id="fighters">
+            <div id="character" class="fighter">
+                <div class="health-bar">
+                    <div id="player-health-bar" class="health-fill"></div>
+                </div>
+                <img src="photos/mainCharacter/mainCharacter.png" alt="mainCharacter">
+                <div class="damage" id="player-damage"></div>
             </div>
-            <img src="photos/mainCharacter/mainCharacter.png" alt="mainCharacter">
-            <div class="damage" id="player-damage"></div>
-        </div>
 
-        <div id="enemy" class="fighter">
-            <div class="health-bar">
-                <div id="enemy-health-bar" class="health-fill"></div>
+            <div id="enemy" class="fighter">
+                <div class="health-bar">
+                    <div id="enemy-health-bar" class="health-fill"></div>
+                </div>
+                <img id="enemy-img" src="photos/Enemies/67.png" alt="enemy">
+                <div class="damage" id="enemy-damage"></div>
             </div>
-            <img id="enemy-img" src="photos/Enemies/67.png" alt="enemy">
-            <div class="damage" id="enemy-damage"></div>
+        </div>
+
+        <p id="current-fighter">Current Fighter: Player</p>
+        <p id="message">Battle started!</p>
+        <p id="coins">Coins: 0</p>
+    </div>
+
+    <!-- Pause Menu -->
+    <div id="pause-menu" class="hidden">
+        <h2>⏸ Game Paused</h2>
+        <div id="pause-stats">
+            <!-- Filled dynamically -->
+        </div>
+        <div id="song-options">
+            <h3>Song Options</h3>
+            <button onclick="changeSong('song1')">Song 1</button>
+            <button onclick="changeSong('song2')">Song 2</button>
+            <button onclick="changeSong('song3')">Song 3</button>
+        </div>
+        <p>Press 'P' to resume</p>
+    </div>
+
+    <!-- Weapons Shop -->
+    <div id="shop-area">
+        <h2>⚔️ Weapon Shop</h2>
+        <div id="weapons-container">
+            <div class="weapon-card" data-cost="16" data-attack="12">
+                <img src="photos/Weapons/M67 grenade.png" alt="M67 grenade" style="width: 60px; height: 40px; margin-bottom: 5px;">
+                <div class="weapon-name">M67 grenade</div>
+                <div class="weapon-cost">💰 16</div>
+            </div>
+            <div class="weapon-card" data-cost="17" data-attack="14">
+                <img src="photos/Weapons/Winchester Model 67.png" alt="Winchester Model 67" style="width: 60px; height: 40px; margin-bottom: 5px;">
+                <div class="weapon-name">Winchester Model 67</div>
+                <div class="weapon-cost">💰 17</div>
+            </div>
+            <div class="weapon-card" data-cost="17" data-attack="14">
+                <img src="photos/Weapons/Norinco type 67 machine gun.png" alt="Norinco type 67 machine gun" style="width: 60px; height: 40px; margin-bottom: 5px;">
+                <div class="weapon-name">Norinco type 67 machine gun</div>
+                <div class="weapon-cost">💰 17</div>
+            </div>
+            <div class="weapon-card" data-cost="17" data-attack="14">
+                <img src="photos/Weapons/Type 67 recoilless rifle.png" alt="Type 67 recoilless rifle" style="width: 60px; height: 40px; margin-bottom: 5px;">
+                <div class="weapon-name">Type 67 recoilless rifle</div>
+                <div class="weapon-cost">💰 17</div>
+            </div>
+            <div class="weapon-card" data-cost="16" data-attack="12">
+                <img src="photos/Weapons/Tag 67 airsopft hand grenade.png" alt="Tag 67 airsopft hand grenade" style="width: 60px; height: 40px; margin-bottom: 5px;">
+                <div class="weapon-name">Tag 67 airsoft hand grenade</div>
+                <div class="weapon-cost">💰 16</div>
+            </div>
+            <div class="weapon-card" data-cost="267" data-attack="0">
+                <img src="photos/Weapons/coin.png" alt="coin" style="width: 60px; height: 40px; margin-bottom: 5px;">
+                <div class="weapon-name">Coin Rate +5/sec</div>
+                <div class="weapon-cost">💰 267</div>
+            </div>
+            <div class="weapon-card" data-cost="60" data-attack="76">
+                <img src="photos/Weapons/M67 flame tank.png" alt="M67 flame tank" style="width: 60px; height: 40px; margin-bottom: 5px;">
+                <div class="weapon-name">M67 flame tank</div>
+                <div class="weapon-cost">💰 60</div>
+            </div>
         </div>
     </div>
 
-    <p id="current-fighter">Current Fighter: Player</p>
-    <p id="message">Press 'P' to start the game!</p>
-    <p id="coins">Coins: 0</p>
-</div>
-
-<!-- Pause Menu -->
-<div id="pause-menu" class="hidden">
-    <h2>⏸ Game Paused</h2>
-    <div id="pause-stats">
-      <!-- Stats will be filled by JS -->
+    <!-- End Screen -->
+    <div id="end-screen" class="hidden">
+        <h1>💀 Game Over 💀</h1>
+        <button id="try-again-btn">Try Again</button>
     </div>
-    <div id="song-options">
-        <h3>Song Options</h3>
-        <button onclick="changeSong('song1')">Song 1</button>
-        <button onclick="changeSong('song2')">Song 2</button>
-        <button onclick="changeSong('song3')">Song 3</button>
-    </div>
-    <p>Press 'P' to resume</p>
-</div>
 
-<!-- Weapons Shop -->
-<div id="shop-area">
-    <h2>⚔️ Weapon Shop</h2>
-    <div id="weapons-container">
-        <div class="weapon-card" data-cost="16" data-attack="12">
-            <div class="weapon-name">M67 grenade</div>
-            <div class="weapon-cost">💰 16</div>
-        </div>
-        <div class="weapon-card" data-cost="17" data-attack="14">
-            <div class="weapon-name">Winchester Model 67</div>
-            <div class="weapon-cost">💰 17</div>
-        </div>
-        <div class="weapon-card" data-cost="17" data-attack="14">
-            <div class="weapon-name">Norinco type 67 machine gun</div>
-            <div class="weapon-cost">💰 17</div>
-        </div>
-        <div class="weapon-card" data-cost="17" data-attack="14">
-            <div class="weapon-name">Type 67 recoilless rifle</div>
-            <div class="weapon-cost">💰 17</div>
-        </div>
-        <div class="weapon-card" data-cost="16" data-attack="12">
-            <div class="weapon-name">Tag 67 airsopft hand grenade</div>
-            <div class="weapon-cost">💰 16</div>
-        </div>
-        <div class="weapon-card" data-cost="60" data-attack="76">
-            <div class="weapon-name">M67 flame tank</div>
-            <div class="weapon-cost">💰 67</div>
-        </div>
-    </div>
-</div>
-
-<script src="game.js" defer></script>
+    <script src="game.js" defer></script>
 </body>
 </html>
